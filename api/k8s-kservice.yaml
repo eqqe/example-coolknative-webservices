@@ -1,0 +1,19 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: api
+  labels:
+    folder: api
+spec:
+  template:
+    spec:
+      imagepullsecrets:
+      - name: regcred
+      containers:
+      - image: api
+        env:
+        - name: token
+          valueFrom:
+            secretKeyRef:
+              name: token
+              key: token-webservice-1

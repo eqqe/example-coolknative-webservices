@@ -1,0 +1,29 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+  - image: namespace1-asyncwebservice
+    docker:
+      dockerfile: ./namespace1/asyncwebservice/Dockerfile
+  local:
+    push: true
+deploy:
+  kubectl:
+    manifests:
+      - ./namespace1/asyncwebservice/k8s-*
+profiles:
+- name: incluster
+  build:
+    artifacts:
+    - image: namespace1-asyncwebservice
+      kaniko:
+        dockerfile: ./namespace1/asyncwebservice/Dockerfile
+        buildContext:
+          localDir: {}
+        cache:
+          repo: 'DEFAULT_REPO/namespace1-asyncwebservice-cache'
+    cluster:
+      pullSecretName: stub
+      namespace: default
+      dockerConfig:
+        secretName: docker-config-secret-in-kubernetes

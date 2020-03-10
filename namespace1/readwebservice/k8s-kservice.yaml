@@ -1,0 +1,26 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+ name: readwebservice
+ namespace: namespace1
+ labels:
+  serving.knative.dev/visibility: cluster-local
+  folder: readwebservice
+spec:
+  template:
+    spec:
+      imagepullsecrets:
+        - name: regcred
+      containers:
+      - image: namespace1-readwebservice
+        env:
+        - name: MINIO_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio
+              key: accesskey
+        - name: MINIO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio
+              key: secretkey
