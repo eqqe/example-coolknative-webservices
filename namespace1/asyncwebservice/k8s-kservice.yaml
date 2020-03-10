@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+ name: asyncwebservice
+ namespace: namespace1
+ labels:
+  serving.knative.dev/visibility: cluster-local
+  folder: asyncwebservice
+spec:
+  template:
+    spec:
+      imagepullsecrets:
+        - name: regcred
+      containers:
+      - image: namespace1-asyncwebservice

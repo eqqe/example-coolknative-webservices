@@ -1,0 +1,28 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+  - image: namespace1-webservice
+    docker:
+      dockerfile: ./namespace1/webservice/Dockerfile
+  local:
+    push: true
+deploy:
+  kubectl:
+    manifests:
+      - ./namespace1/webservice/k8s-*
+profiles:
+- name: incluster
+  build:
+    artifacts:
+    - image: namespace1-webservice
+      kaniko:
+        dockerfile: ./namespace1/webservice/Dockerfile
+        buildContext:
+          localDir: {}
+        cache: {}
+    cluster:
+      pullSecretName: stub
+      namespace: default
+      dockerConfig:
+        secretName: docker-config-secret-in-kubernetes

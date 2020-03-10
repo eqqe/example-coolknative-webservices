@@ -1,0 +1,26 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+ name: get-logs
+ namespace: knative-monitoring
+ labels:
+  serving.knative.dev/visibility: cluster-local
+  folder: getlogs
+spec:
+  template:
+    spec:
+      imagepullsecrets:
+        - name: regcred
+      containers:
+      - image: get-logs
+        env:
+        - name: MINIO_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio
+              key: accesskey
+        - name: MINIO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio
+              key: secretkey

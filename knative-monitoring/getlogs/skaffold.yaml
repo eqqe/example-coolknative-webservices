@@ -1,0 +1,28 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+  - image: get-logs
+    docker:
+      dockerfile: ./knative-monitoring/getlogs/Dockerfile
+  local:
+    push: true
+deploy:
+  kubectl:
+    manifests:
+      - ./knative-monitoring/getlogs/k8s-*
+profiles:
+- name: incluster
+  build:
+    artifacts:
+    - image: get-logs
+      kaniko:
+        dockerfile: ./knative-monitoring/getlogs/Dockerfile
+        buildContext:
+          localDir: {}
+        cache: {}
+    cluster:
+      pullSecretName: stub
+      namespace: default
+      dockerConfig:
+        secretName: docker-config-secret-in-kubernetes
