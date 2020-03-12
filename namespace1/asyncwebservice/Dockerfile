@@ -3,7 +3,7 @@
 FROM python:3.7
 
 # Install production dependencies.
-RUN pip install Flask==1.1.1 gunicorn==20.0.4 requests==2.22.0 requests==2.22.0 minio==5.0.6 fluent-logger==0.9.5
+RUN pip install -r requirements.txt
 
 # Copy local code to the container image.
 ENV APP_HOME /app
