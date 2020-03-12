@@ -13,7 +13,6 @@ app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
 sender.setup(__name__, host=FLUENT_ADDRESS)
 
-pool = get_redis_connection_pool()
 mc = Minio(('localhost' if DEBUG else MINIO_ADDRESS) + ':9000',
            access_key=os.environ.get('MINIO_ACCESS_KEY', 'minio'),
            secret_key=os.environ.get('MINIO_SECRET_KEY', 'minio123'),
