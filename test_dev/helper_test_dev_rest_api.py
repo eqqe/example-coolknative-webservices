@@ -19,7 +19,7 @@ class HelperTestDevRestApi:
         domain_template = domain_template.replace('{{.Namespace}}', os.environ.get('NAMESPACE'))
         domain_template = domain_template.replace('{{.Name}}', 'api')
         if os.environ.get('PUBLIC_IP') == 'localhost':
-            self.base_url = 'http://istio-ingressgateway.istio-system/'
+            self.base_url = 'http://kourier.kourier-system/'
             headers['Host'] = domain_template
         else:
             self.base_url = 'https://' + domain_template + '/'
