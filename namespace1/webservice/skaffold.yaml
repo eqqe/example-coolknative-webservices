@@ -20,8 +20,7 @@ profiles:
         dockerfile: ./namespace1/webservice/Dockerfile
         buildContext:
           localDir: {}
-        cache:
-          repo: 'DEFAULT_REPO/namespace1-webservice-cache'
+        cache: {}
     cluster:
       pullSecretName: stub
       namespace: default
