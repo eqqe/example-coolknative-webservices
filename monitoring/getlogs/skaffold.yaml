@@ -20,8 +20,7 @@ profiles:
         dockerfile: ./monitoring/getlogs/Dockerfile
         buildContext:
           localDir: {}
-        cache:
-          repo: 'DEFAULT_REPO/monitoring-getlogs-cache'
+        cache: {}
     cluster:
       pullSecretName: stub
       namespace: default
