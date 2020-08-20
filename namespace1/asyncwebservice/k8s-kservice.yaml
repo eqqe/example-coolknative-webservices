@@ -25,12 +25,13 @@ spec:
               name: minio
               key: secretkey
 ---
-apiVersion: eventing.knative.dev/v1beta1
+apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
   name: async-trigger
   namespace: namespace1
 spec:
+  broker: default
   filter:
     attributes:
       type: async
