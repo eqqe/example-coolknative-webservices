@@ -20,8 +20,7 @@ profiles:
         dockerfile: ./api/Dockerfile
         buildContext:
           localDir: {}
-        cache:
-          repo: 'DEFAULT_REPO/api-cache'
+        cache: {}
     cluster:
       pullSecretName: stub
       namespace: default
