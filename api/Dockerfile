@@ -1,4 +1,4 @@
-FROM eqqe/python-docker-utils-webservices:3.7-slim
+FROM eqqe/python-docker-utils-webservices:3.8.5-slim-2020-08-19-17-02
 
 COPY ./api ./api
 
