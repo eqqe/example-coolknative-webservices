@@ -20,8 +20,7 @@ profiles:
         dockerfile: ./namespace1/asyncwebservice/Dockerfile
         buildContext:
           localDir: {}
-        cache:
-          repo: 'DEFAULT_REPO/namespace1-asyncwebservice-cache'
+        cache: {}
     cluster:
       pullSecretName: stub
       namespace: default
