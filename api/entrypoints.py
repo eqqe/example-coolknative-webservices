@@ -17,7 +17,7 @@ r = redis.Redis(connection_pool=pool)
 @secured_with_token()
 def health():
     urls_to_ping = ['http://webservice.namespace1/ping', 'http://asyncwebservice.namespace1/ping',
-                    'http://readwebservice.namespace1/ping', 'http://minio-hl-svc.minio:9000/minio/health/live',
+                    'http://readwebservice.namespace1/ping', 'http://minio-hl.minio:9000/minio/health/live',
                     'http://getlogs.monitoring/ping']
     status = {}
     status_up_all = True
